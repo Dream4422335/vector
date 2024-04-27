@@ -1,22 +1,26 @@
-function generatePairs() { //make start point (0,0) and end point (5,3)
-    var pairs = [
+window.onload = function() {
+    buttonclick();
+};
+
+function generatePairs() { 
+    var pair = [
         [0, 0],
         [5, 3] 
     ];
 
     for (var i = 0; i < 3; i++) {
-        var uniquePair = generateUniquePair(pairs);
-        pairs.push(uniquePair);
+        var uniquePair = generateUniquePair(pair);
+        pair.push(uniquePair);
     }
 
-    var temp = pairs[1];
-    pairs[1] = pairs[4];
-    pairs[4] = temp;
+    var temp = pair[1];
+    pair[1] = pair[4];
+    pair[4] = temp;
 
-    return pairs;
+    return pair;
 }
 
-function generateUniquePair(existingPairs) { // generate pair that never exist before
+function generateUniquePair(existingPairs) {
     var a, b;
     var isUnique = false;
 
@@ -49,7 +53,7 @@ function generateUniquePair(existingPairs) { // generate pair that never exist b
     return [a, b];
 }
 
-function createCircles(pairs) { // make circle at the location base on pair
+function createCircles(pairs) {
     var rectangle = document.getElementById('rectangle');
     rectangle.innerHTML = '';
 
@@ -57,9 +61,9 @@ function createCircles(pairs) { // make circle at the location base on pair
     grid.className = 'grid';
 
     for (var i = 0; i < 5; i++) {
-        var pair = pairs[i];
-        var a = pair[0];
-        var b = pair[1];
+        var pairss = pairs[i];
+        var a = pairss[0];
+        var b = pairss[1];
 
         var circle = document.createElement('div');
         circle.className = 'circle';
@@ -84,10 +88,12 @@ function createCircles(pairs) { // make circle at the location base on pair
     rectangle.appendChild(grid);
 }
 
+var pairs;
+
 function buttonclick() {
     var pairs = generatePairs();
     createCircles(pairs);
-    createCanvasLines(pairs); // Call function to draw lines
+    createCanvasLines(pairs); 
 }
 
 function createCanvasLines(pairs) {
@@ -95,21 +101,21 @@ function createCanvasLines(pairs) {
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Define the line colors and widths
+   
     var lineColors = ['blue', 'green', 'purple', 'orange'];
     var lineWidth = 2;
 
     for (var i = 0; i < pairs.length - 1; i++) {
-        var startX = (pairs[i][0] + 1.5) * 80; // x-coordinate of the starting point (middle of the circle)
-        var startY = (pairs[i][1] + 1.5) * 80; // y-coordinate of the starting point (middle of the circle)
-        var endX = (pairs[i + 1][0] + 1.5) * 80; // x-coordinate of the ending point (middle of the circle)
-        var endY = (pairs[i + 1][1] + 1.5) * 80; // y-coordinate of the ending point (middle of the circle)
+        var startX = (pairs[i][0] + 1.5) * 90; 
+        var startY = (pairs[i][1] + 1.5) * 90; 
+        var endX = (pairs[i + 1][0] + 1.5) * 90; 
+        var endY = (pairs[i + 1][1] + 1.5) * 90; 
 
         ctx.beginPath();
-        ctx.moveTo(startX, startY); // Move to the middle of the starting circle
-        ctx.lineTo(endX, endY); // Draw line to the middle of the next circle
-        ctx.strokeStyle = lineColors[i]; // Set line color
-        ctx.lineWidth = lineWidth; // Set line width
+        ctx.moveTo(startX, startY); 
+        ctx.lineTo(endX, endY);
+        ctx.strokeStyle = lineColors[i]; 
+        ctx.lineWidth = lineWidth;
         ctx.stroke();
     }
 }
@@ -119,12 +125,13 @@ var currentLineIndex = 0;
 function buttonclick() {
     pairs = generatePairs();
     createCircles(pairs);
-    currentLineIndex = 0; // Reset current line index
-    drawLine(currentLineIndex); // Draw the first line initially
+    currentLineIndex = 0; 
+    drawLine(currentLineIndex); 
 }
 
-var pairs = []; // Initialize pairs globally
-var lineColors = ['blue', 'green', 'purple', 'orange', 'gray']; // Define line colors, with the last color being gray
+var pairs = []; 
+var lineColors = ['blue', 'green', 'purple', 'orange', 'gray']; 
+
 
 function nextLine() {
     currentLineIndex++;
@@ -133,14 +140,15 @@ function nextLine() {
     }
 }
 
+
 function drawLine(index) {
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
-    // Clear canvas
+ 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw previous lines with a gray trace
+ 
     for (var i = 0; i < index; i++) {
         ctx.beginPath();
         ctx.moveTo((pairs[i][0] + 1.5) * 80, (pairs[i][1] + 1.5) * 80);
@@ -150,7 +158,6 @@ function drawLine(index) {
         ctx.stroke();
     }
 
-    // Draw current line
     ctx.beginPath();
     ctx.moveTo((pairs[index][0] + 1.5) * 80, (pairs[index][1] + 1.5) * 80);
     ctx.lineTo((pairs[index + 1][0] + 1.5) * 80, (pairs[index + 1][1] + 1.5) * 80);
@@ -158,3 +165,71 @@ function drawLine(index) {
     ctx.lineWidth = 2;
     ctx.stroke();
 }
+
+var w=0,h=0;
+
+
+function enterw(n){
+    w = n;
+    var imageElement = document.getElementById('imageToShow');
+}
+
+function enterh(n){
+    h = n;
+}
+
+function submit(){
+    checktrue(w,h,currentLineIndex);
+}
+
+function ChangeToNegativeButton(w,h){
+    w = -w;
+    h = -h;
+}
+
+function ChangeImageToNegative() {
+    var posx = document.getElementsByClassName("positionx");
+    var posy = document.getElementsByClassName("positiony");
+    var negx = document.getElementsByClassName("negativex");
+    var negy = document.getElementsByClassName("negativey");
+    
+    toggleDisplay(posx, negx);
+    toggleDisplay(posy, negy);
+}
+
+function toggleDisplay(showElements, hideElements) {
+    for (var i = 0; i < showElements.length; i++) {
+        if (showElements[i].style.display === "block") {
+            showElements[i].style.display = "none";
+            hideElements[i].style.display = "block";
+        } else {
+            showElements[i].style.display = "block";
+            hideElements[i].style.display = "none";
+        }
+    }
+}
+
+function negativeButton() {
+    ChangeToNegativeButton(w,h);
+    ChangeImageToNegative();
+}
+
+function checktrue(w,h){
+    var ww = pairs[currentLineIndex+1][0] - pairs[currentLineIndex][0];
+    var hh = pairs[currentLineIndex+1][1] - pairs[currentLineIndex][1];
+
+    if(ww == w && hh == h)
+    {
+        nextLine();
+    }
+}
+
+function nextLine() {
+    currentLineIndex++;
+    if (currentLineIndex < pairs.length - 1) {
+        drawLine(currentLineIndex);
+    } else {
+        alert("เก่งมากน้อง");
+    }
+}
+
