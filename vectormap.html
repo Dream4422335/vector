@@ -14,6 +14,32 @@
     <canvas id="canvas" width="600" height="400"></canvas>
     <div class="rectangle" id="rectangle"></div>
     <button onclick="nextLine()" id="nextButton" style="position: absolute; bottom: 20px; right: 20px;">Next</button>
+    
+    <!-- positive -->
+    <button class="positionx" onclick="enterw(0)" id="add" >x0</button>
+    <button class="positionx" onclick="enterw(1)" id="rightone">x1</button>
+    <button class="positionx" onclick="enterw(2)" id="righttwo">x2</button>
+    <button class="positionx" onclick="enterw(3)" id="rightthree">x3</button>
+
+    <button class="positiony" onclick="enterh(0)" id="add">y0</button>
+    <button class="positiony" onclick="enterh(-1)" id="upone">y1</button>
+    <button class="positiony" onclick="enterh(-2)" id="uptwo">y2</button>
+    <button class="positiony" onclick="enterh(-3)" id="upthree">y3</button>
+
+    <!-- negative -->
+    <button class="negativex" onclick="enterw(0)" id="add">-x0</button>
+    <button class="negativex" onclick="enterw(-1)" id="leftone">-x1</button>
+    <button class="negativex" onclick="enterw(-2)" id="lefttwo">-x2</button>
+    <button class="negativex" onclick="enterw(-3)" id="leftthree">-x3</button>
+
+    <button class="negativey" onclick="enterh(0)" id="add">-y0</button>
+    <button class="negativey" onclick="enterh(1)" id="downone">-y1</button>
+    <button class="negativey" onclick="enterh(2)" id="downtwo">-y2</button>
+    <button class="negativey" onclick="enterh(3)" id="downthree">-y3</button>
+
+    <button class="my-button" onclick="negativeButton()" id="add">Negative()</button>
+    
+    <button onclick="submit()" id="add">submit</button>
     <script src="script.js"></script>
 </body>
 
