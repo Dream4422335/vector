@@ -1,6 +1,6 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     buttonclick();
-};
+});
 
 function generatePairs() { 
     var pair = [
@@ -168,16 +168,6 @@ function drawLine(index) {
 
 var w=0,h=0;
 
-
-function enterw(n){
-    w = n;
-    var imageElement = document.getElementById('imageToShow');
-}
-
-function enterh(n){
-    h = n;
-}
-
 function submit(){
     checktrue(w,h,currentLineIndex);
 }
@@ -233,3 +223,52 @@ function nextLine() {
     }
 }
 
+
+function enterw(n){
+    w = n;
+    showImageForButton('x' + Math.abs(n));
+    document.getElementById('enterwValue').innerText = w;
+}
+
+function enterh(n){
+    h = n;
+    showImageForButton('y' + Math.abs(n));
+    document.getElementById('enterhValue').innerText = h; 
+}
+
+function showImageForButton(buttonId) {
+    var imagePath = getImagePathForButton(buttonId);
+    var imageElement = document.getElementById('imageToShow');
+    imageElement.src = imagePath;
+}
+
+function getImagePathForButton(buttonId) {
+    switch(buttonId) {
+        case 'x1':
+            return './picture/x1.png';
+        case 'x2':
+            return './picture/x2.png';
+        case 'x3':
+            return './picture/x3.png';
+        case '-x1':
+            return './picture/-x1.png';
+        case '-x2':
+            return './picture/-x2.png';
+        case '-x3':
+            return './picture/-x3.png';
+        case 'y1':
+            return './picture/y1.png';
+        case 'y2':
+            return './picture/y2.png';
+        case 'y3':
+            return './picture/y3.png';
+        case '-y1':
+            return './picture/-y1.png';
+        case '-y2':
+            return './picture/-y2.png';
+        case '-y3':
+            return './picture/-y3.png';
+        default:
+            return '';
+    }
+}
