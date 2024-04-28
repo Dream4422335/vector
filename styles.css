@@ -235,7 +235,7 @@ button {
     z-index: 1;
 }
 
-
+/* ImageFromRotatey */
 #downtwo {
     border-radius: 20px; 
     border: 20% solid #472407; 
@@ -270,4 +270,34 @@ button {
     left: 10%;
     z-index: 1;
     transform: rotate(180deg)
+}
+
+
+#imageContainer {
+    position: relative;
+    width: 100%;
+    max-width: 600px; 
+    margin: auto;
+    margin-top: 20px; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+    border-radius: 10px; 
+}
+
+#imageContainer img {
+    max-width: 100%; 
+    display: block;
+    margin: auto;
+}
+
+#imageContainer {
+    position: relative;
+    width: 100%;
+    max-width: 600px; 
+    margin: auto;
+    margin-top: 20px; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin-top: 20px; 
 }
